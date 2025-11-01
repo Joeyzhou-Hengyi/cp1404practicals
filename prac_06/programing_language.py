@@ -15,3 +15,8 @@ class ProgrammingLanguage:
         self.reflection = reflection
         self.year = year
 
+    def is_dynamic(self):
+        return str(self.typing).strip().lower() == "dynamic"
+
+
+
