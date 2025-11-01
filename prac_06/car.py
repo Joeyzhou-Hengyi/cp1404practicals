@@ -8,6 +8,7 @@ class Car:
 
         fuel: float, one unit of fuel drives one kilometre
         """
+        self.name = name
         self.fuel = fuel
         self._odometer = 0
 
@@ -28,3 +29,5 @@ class Car:
             self.fuel -= distance
         self._odometer += distance
         return distance
+def _str_(self):
+    return f"{self.name}, fuel={self.fuel}, odometer={self._odometer}"
