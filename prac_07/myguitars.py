@@ -24,3 +24,20 @@ def save_guitars(filename, guitars):
     for guitar in guitars:
         writer.writerow([guitar.name, guitar.year, f"{guitar.cost:.2f}"])
     out_file.close()
+
+def display_guitars(guitars, heading):
+    """Display guitars in a formatted way."""
+    print(heading)
+    if not guitars:
+        print("(no guitars)")
+    else:
+        width = max(len(g.name) for g in guitars)
+        count = 1
+        for g in guitars:
+            if g.is_vintage():
+                vintage_text = " (vintage)"
+            else:
+                vintage_text = ""
+            print(f"Guitar {count}: {g.name:<{width}} ({g.year}), worth ${g.cost:,.2f}{vintage_text}")
+            count = count + 1
+    print()
