@@ -92,3 +92,47 @@ def update_project(projects):
     if priority_text != "":
         project.priority = int(priority_text)
     print("Project updated.\n")
+
+def main():
+    """Main menu-driven program."""
+    print("Welcome to Pythonic Project Management")
+
+    projects = load_projects(FILENAME)
+    print(f"Loaded {len(projects)} projects from {FILENAME}")
+
+    menu = ("- (L)oad projects\n"
+            "- (S)ave projects\n"
+            "- (D)isplay projects\n"
+            "- (F)ilter projects by date\n"
+            "- (A)dd new project\n"
+            "- (U)pdate project\n"
+            "- (Q)uit")
+
+    choice = ""
+    while choice.lower() != "q":
+        print(menu)
+        choice = input(">>> ").lower()
+        if choice == "l":
+            filename = input("Filename to load from: ")
+            projects = load_projects(filename)
+        elif choice == "s":
+            filename = input("Filename to save to: ")
+            save_projects(filename, projects)
+        elif choice == "d":
+            display_projects(projects)
+        elif choice == "f":
+            filter_projects(projects)
+        elif choice == "a":
+            add_new_project(projects)
+        elif choice == "u":
+            update_project(projects)
+        elif choice == "q":
+            answer = input(f"Would you like to save to {FILENAME}? ").lower()
+            if answer.startswith("y"):
+                save_projects(FILENAME, projects)
+            print("Thank you for using custom-built project management software.")
+        else:
+            print("Invalid menu choice")
+
+
+main()
