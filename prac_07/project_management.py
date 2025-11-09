@@ -33,3 +33,18 @@ def save_projects(filename, projects):
         print(f"{project.name}\t{date_string}\t{project.priority}\t"
               f"{project.cost_estimate:.2f}\t{project.completion_percentage}", file=out_file)
     out_file.close()
+
+def display_projects(projects):
+    """Show incomplete and completed projects sorted by priority."""
+    incomplete = [p for p in projects if not p.is_complete()]
+    complete = [p for p in projects if p.is_complete()]
+
+    incomplete.sort()
+    complete.sort()
+
+    print("Incomplete projects:")
+    for project in incomplete:
+        print(f"  {project}")
+    print("Completed projects:")
+    for project in complete:
+        print(f"  {project}")
