@@ -41,3 +41,29 @@ def display_guitars(guitars, heading):
             print(f"Guitar {count}: {g.name:<{width}} ({g.year}), worth ${g.cost:,.2f}{vintage_text}")
             count = count + 1
     print()
+
+def get_new_guitars():
+    """Ask user to add new guitars; stop when name is blank."""
+    print("Add new guitars (blank name to finish):")
+    new_guitars = []
+    name = input("Name: ").strip()
+    while name != "":
+        year_text = input("Year: ").strip()
+        cost_text = input("Cost: $").strip()
+
+        # Convert safely
+        try:
+            year = int(year_text)
+        except ValueError:
+            year = 0
+        try:
+            cost = float(cost_text)
+        except ValueError:
+            cost = 0.0
+
+        new_guitars.append(Guitar(name, year, cost))
+        print(f"{name} ({year}) : ${cost:,.2f} added.\n")
+
+        name = input("Name: ").strip()  # ask again
+    return new_guitars
+
