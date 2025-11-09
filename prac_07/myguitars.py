@@ -67,3 +67,22 @@ def get_new_guitars():
         name = input("Name: ").strip()  # ask again
     return new_guitars
 
+def main():
+    guitars = load_guitars(FILENAME)
+    display_guitars(guitars, "These are the guitars loaded:")
+
+    guitars.sort()  # uses Guitar.__lt__
+    display_guitars(guitars, "Guitars sorted by year (oldest → newest):")
+
+    new_guitars = get_new_guitars()
+    if len(new_guitars) > 0:
+        guitars.extend(new_guitars)
+        guitars.sort()
+        save_guitars(FILENAME, guitars)
+        print("New guitars saved to file.")
+    else:
+        print("No new guitars added.")
+
+
+main()
+
