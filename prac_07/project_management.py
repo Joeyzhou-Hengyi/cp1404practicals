@@ -59,3 +59,36 @@ def filter_projects(projects):
 
     for project in filtered:
         print(project)
+
+def add_new_project(projects):
+    """Ask user for details and add a new project."""
+    print("Let's add a new project")
+    name = input("Name: ")
+    date_string = input("Start date (dd/mm/yyyy): ")
+    start_date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost estimate: $"))
+    completion_percentage = int(input("Percent complete: "))
+
+    new_project = Project(name, start_date, priority, cost_estimate, completion_percentage)
+    projects.append(new_project)
+    print("Project added.\n")
+
+def update_project(projects):
+    """Select a project and update its percentage and/or priority."""
+    for i, project in enumerate(projects):
+        print(f"{i} {project}")
+    choice_text = input("Project choice: ")
+    if not choice_text.isdigit():
+        return
+    choice = int(choice_text)
+    project = projects[choice]
+    print(project)
+    percentage_text = input("New Percentage: ")
+    priority_text = input("New Priority: ")
+
+    if percentage_text != "":
+        project.completion_percentage = int(percentage_text)
+    if priority_text != "":
+        project.priority = int(priority_text)
+    print("Project updated.\n")
